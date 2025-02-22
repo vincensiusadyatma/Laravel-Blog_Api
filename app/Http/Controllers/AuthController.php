@@ -61,6 +61,12 @@ class AuthController extends Controller
                             'status' => true,
                             'last_sign_in' =>$response->json()["last_sign_in_at"]
                         ]);
+      
+                        DB::table('role_ownerships')->insert([
+                                'user_id' => $user->id,
+                                'role_id' => 1,
+                        ]);
+                        
                     } else {
                         $user->update([
                             'username' => $user_data["name"],

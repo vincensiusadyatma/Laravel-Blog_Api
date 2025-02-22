@@ -12,9 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'CheckToken' => App\Http\Middleware\SupabaseTokenMiddleware::class,
+            'CheckRole' => App\Http\Middleware\CheckRole::class,
            
         ]);
+
+        
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
