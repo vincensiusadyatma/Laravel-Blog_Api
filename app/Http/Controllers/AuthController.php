@@ -29,7 +29,6 @@ class AuthController extends Controller
     public function handleSupabaseCallback(Request $request){
         $data = $request->all();
 
-       
 
         if (!isset($data['access_token'])) {
             
@@ -42,7 +41,7 @@ class AuthController extends Controller
             ])->get(env('SUPABASE_URL') . '/auth/v1/user');
         
             if ($response->failed()) {
-                return response()->json(['error' => 'Gagal mendapatkan data pengguna.'], 400);
+                return response()->json(['error' => 'Failed to retrieve user data'], 400);
             } else {
                 // dd($response->json()["user_metadata"]);
                 $user_data = $response->json()["user_metadata"];
@@ -50,7 +49,7 @@ class AuthController extends Controller
                 DB::beginTransaction();
         
                 try {
-                    // Cari user berdasarkan email
+                  
                     $user = User::where('email', $user_data["email"])->first();
                 
                     if (!$user) {
@@ -86,16 +85,36 @@ class AuthController extends Controller
                         'message' => 'Error',
                     ], 500);
                 }
-
             }
-        
-           
-
-        }
-       
-        
-        
+        }  
     }
+
+    public function handleSupabaseLogOut(Request $request){
+        if (!Auth::check()) {
+            return response()->json([
+                'status' => 400,
+                'message' => 'Logout failed, no user is currently logged in',
+            ], 400);
+        }
+    
+        try {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+    
+            return response()->json([
+                'status' => 200,
+                'message' => 'Logout successful',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 500,
+                'message' => 'Error',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    
 
         // Debug response
         // return response()->json($response->json());
