@@ -54,4 +54,15 @@ Check if the API is conected correctly.
          "refresh_token : "auth refresh token"
       }
   }
-
+  
+#### `GET /auth/supabase/logout`
+**Response:**
+- **200 OK** - If the api is connected successfully.
+- **404 Not Found** - If the api connection not found.
+  
+   Response:
+  ```bash
+  {
+   "status": "200,
+   "message": "Logout successfuly",
+    }    
