@@ -4,8 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PressReleaseController;
 
+// Route::get('/', function () {
+//     return view('welcome');
+// }) ;
+
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json([
+        'status' => 200,
+        'message' => 'API Connected Successfully',
+    ], 200);
 }) ;
 
 Route::get('/auth/authenticate', function () {
