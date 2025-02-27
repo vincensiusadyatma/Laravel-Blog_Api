@@ -28,7 +28,7 @@ class AuthController extends Controller
 
     public function handleSupabaseCallback(Request $request){
         $data = $request->all();
-
+       
 
         if (!isset($data['access_token'])) {
             
@@ -81,6 +81,7 @@ class AuthController extends Controller
                         'status' => 200,
                         'message' => 'Login successful',
                         'user' => $user,
+                        'token' => $request->all()
                     ], 200);
 
                 } catch (\Throwable $th) {
