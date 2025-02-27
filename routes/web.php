@@ -28,10 +28,11 @@ Route::middleware(['CheckRole:admin'])->prefix('press-releases')->group(function
     Route::post('/', [PressReleaseController::class, 'store'])->name('press-releases.store'); // Simpan press release baru
     Route::delete('/{pressRelease:press_uuid}', [PressReleaseController::class, 'destroy']);
     Route::put('/{id}', [PressReleaseController::class, 'update'])->name('press-release.update');
+    Route::get('/{id}/edit', [PressReleaseController::class, 'edit'])->name('press-release.edit');
 });
 
 Route::get('/press-release/create', function () {
     return view('pressReleaseView');
 });
 
-Route::get('/press-release/{id}/edit', [PressReleaseController::class, 'edit'])->name('press-release.edit');
+
