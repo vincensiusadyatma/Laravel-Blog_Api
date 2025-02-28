@@ -78,15 +78,15 @@ Check if the API is conected correctly.
   Request ( form data / multipart data ):
   ```bash
    {
-    "title": "press release title",
-    "date": "YYYY-MM-DD",
-    "time": "Hours:Minute",
-    "contents" :array {
-          0 => array {
+    "title": "press release title" (required),
+    "date": "YYYY-MM-DD" (required),
+    "time": "Hours:Minute" (required),
+    "contents" :array (required) {
+          0 => array (nullable) {
             "content" : "string text content",
             "image"   : image file
          },
-          1 => array {
+          1 => array (nullable) {
             "content" : "string text content",
             "image"   : image file
          },
