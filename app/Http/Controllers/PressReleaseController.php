@@ -18,6 +18,8 @@ class PressReleaseController extends Controller{
             $query->orderBy('id', 'asc'); 
         }])->orderBy('id', 'asc')->get(); 
 
+        $pressReleases->makeHidden(['contents']);
+
         return response()->json([
             'message' => 'Press releases retrieved successfully',
             'data' => $pressReleases
@@ -44,6 +46,7 @@ class PressReleaseController extends Controller{
     
 
     public function store(Request $request){
+    
         try {
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
@@ -53,6 +56,8 @@ class PressReleaseController extends Controller{
                 'contents.*.content' => 'nullable|string',
                 'contents.*.image' => 'nullable|image|max:2048', 
             ]);
+
+    
     
             $pressRelease = PressRelease::create([
                 'title' => $validatedData['title'],
@@ -126,7 +131,7 @@ class PressReleaseController extends Controller{
     }
     
      public function update(Request $request, $id){
-         $request->validate([
+         $validated = $request->validate([
              'title' => 'required|string|max:255',
              'date' => 'required|date',
              'time' => 'required',
@@ -134,6 +139,8 @@ class PressReleaseController extends Controller{
              'contents.*.content' => 'nullable|string',
              'contents.*.image' => 'nullable|image|max:2048', 
          ]);
+         
+         dd($validated);
      
          // Update Press Release 
          $pressRelease = PressRelease::findOrFail($id);
