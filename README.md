@@ -60,9 +60,107 @@ Check if the API is conected correctly.
 - **200 OK** - If the api is connected successfully.
 - **404 Not Found** - If the api connection not found.
   
-   Response:
+
   ```bash
   {
    "status": "200,
    "message": "Logout successfuly",
-    }    
+    }
+
+
+### 3. Press Release Endpoints
+## Store New Press Release
+#### `POST /press-releases`
+ Create Form
+ - Textarea name field => contents[index][content]
+ - File Input Image name field => contents[index]][image]
+    
+  Request ( form data / multipart data ):
+  ```bash
+   {
+    "title": "press release title",
+    "date": "YYYY-MM-DD",
+    "time": "Hours:Minute",
+    "contents" :array {
+          0 => array {
+            "content" : "string text content",
+            "image"   : image file
+         },
+          1 => array {
+            "content" : "string text content",
+            "image"   : image file
+         },
+        .........
+  }
+```
+## Delete Press Release
+#### `DELETE /press-releases /{press-release uuid}`
+ Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Press release deleted successfully",
+  }
+
+ ```
+## Read All Press Release
+#### `GET /press-releases`
+ Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Press releases retrieved successfully",
+    "data" : [
+        {
+            id: press release id,
+            press_uuid: "press release uuid",
+            title: "press release title",
+            date: "press release date",
+            time: "press release create time",
+            created_at: "2025-02-22T10:00:38.000000Z",
+            updated_at: "2025-02-22T10:00:38.000000Z"
+        }
+        ...........
+
+    ]
+  }
+
+ ```
+
+## Read Press Release And Contents By UUID
+#### `GET /press-releases /{press-release uuid}`
+
+ Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Press releases retrieved successfully",
+    "data" : [
+        {
+            id: press release id,
+            press_uuid: "press release uuid",
+            title: "press release title",
+            date: "press release date",
+            time: "press release create time",
+            created_at: "2025-02-22T10:00:38.000000Z",
+            updated_at: "2025-02-22T10:00:38.000000Z"
+            contents: [
+                        {
+                        id: press release content id,
+                        press_release_id: press release content id,
+                        image_url: "press release content image url",
+                        content: "press release content text",
+                        created_at: "2025-02-22T10:00:38.000000Z",
+                        updated_at: "2025-02-27T05:53:56.000000Z"
+                        }
+                    ...........
+                    ]
+        }
+        ...........
+
+    ]
+  }
+
+ ```
+  
+  
