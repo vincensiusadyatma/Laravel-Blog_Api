@@ -162,5 +162,24 @@ Check if the API is conected correctly.
   }
 
  ```
+## Update Press Release And Content
+Request ( form data / multipart data ):
+  ```bash
+   {
+    "title": "press release title",
+    "date": "YYYY-MM-DD",
+    "time": "Hours:Minute",
+    "contents" :array {
+          0 => array {
+            "content" : "string text content",
+            "image"   : image file
+         },
+          1 => array {
+            "content" : "string text content",
+            "image"   : image file
+         },
+        .........
+  }
+```
   
   
