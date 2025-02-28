@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('press_releases_content', function (Blueprint $table) {
+        Schema::create('press_release_contents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('press_release_id')->constrained()->onDelete('cascade');
+            $table->string('image_url')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

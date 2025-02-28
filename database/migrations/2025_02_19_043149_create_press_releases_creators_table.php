@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('press_releases_creators', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('press_id');
             $table->timestamps();
+
+            $table->foreign('press_id')->references('id')->on('press_releases')->onDelete('cascade');
         });
     }
 

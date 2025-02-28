@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('press_releases', function (Blueprint $table) {
             $table->id();
+            $table->uuid('press_uuid');
+            $table->string('title');
+            $table->date('date');
+            $table->time('time');
             $table->timestamps();
         });
     }
