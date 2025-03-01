@@ -39,7 +39,7 @@ Route::middleware(['CheckRole:admin'])->prefix('press-releases')->group(function
     Route::get('/{id}/edit', [PressReleaseController::class, 'edit'])->name('press-release.edit');
 });
 
-Route::iddleware(['CheckRole:admin'])->prefix('gallery')->group(function () {
+Route::middleware(['CheckRole:admin'])->prefix('gallery')->group(function () {
     Route::get('/', [GalleryController::class, 'getAlllGallery'])->name('gallery.all'); 
     Route::get('/{gallery:gallery_uuid}', [GalleryController::class, 'getGalleryById'])->name('gallery.id'); 
     Route::post('/', [GalleryController::class, 'store'])->name('gallery.store');

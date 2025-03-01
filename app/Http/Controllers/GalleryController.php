@@ -13,11 +13,12 @@ class GalleryController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'caption' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // dd($validated);
       
         $path = $request->file('image')->store('gallery', 'public');
 
@@ -65,10 +66,11 @@ class GalleryController extends Controller
     public function update(Request $request, $uuid){
         $gallery = Gallery::where('gallery_uuid', $uuid)->firstOrFail();
         
-        $request->validate([
+       $validated=  $request->validate([
             'caption' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        //  dd($validated);
 
         if ($request->hasFile('image')) {
             // delete old image
