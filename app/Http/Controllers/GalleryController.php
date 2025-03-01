@@ -18,10 +18,9 @@ class GalleryController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Simpan gambar ke storage dan dapatkan pathnya
+      
         $path = $request->file('image')->store('gallery', 'public');
 
-        // Simpan data ke database
         $gallery = Gallery::create([
             'gallery_uuid' =>  Str::uuid(),
             'image_url' => $path, 
