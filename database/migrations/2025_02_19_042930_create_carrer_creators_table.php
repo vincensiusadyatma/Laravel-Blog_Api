@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('carrer_creators', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('carrer_id');
             $table->timestamps();
+
+            $table->foreign('carrer_id')->references('id')->on('carrers')->onDelete('cascade');
         });
     }
 
