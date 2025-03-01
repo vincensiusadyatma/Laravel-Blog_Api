@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PressReleaseController;
 
 // Route::get('/', function () {
@@ -38,8 +39,24 @@ Route::middleware(['CheckRole:admin'])->prefix('press-releases')->group(function
     Route::get('/{id}/edit', [PressReleaseController::class, 'edit'])->name('press-release.edit');
 });
 
+Route::middleware(['CheckRole:admin'])->prefix('gallery')->group(function () {
+    Route::get('/', [GalleryController::class, 'getAlllGallery'])->name('gallery.all'); 
+    Route::get('/{gallery:gallery_uuid}', [GalleryController::class, 'getGalleryById'])->name('gallery.id'); 
+    Route::post('/', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::delete('/{gallery:gallery_uuid}', [GalleryController::class, 'destroy'])->name('gallery.destroy'); 
+    Route::put('/{id}', [GalleryController::class, 'update'])->name('gallery.update');
+    Route::get('/{uuid}/edit', [GalleryController::class, 'edit'])->name('gallery.edit');
+});
+
 Route::get('/press-release/create', function () {
     return view('pressReleaseView');
 });
+
+Route::get('/gallery/bikin/create', function () {
+
+    return view('galleryCreate');
+});
+
+
 
 
