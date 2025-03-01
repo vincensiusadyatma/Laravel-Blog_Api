@@ -17,11 +17,22 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+     protected $primaryKey = 'id';
+
     protected $fillable = [
-        'name',
+        'user_uuid',
+        'username',
+        'fullname',
         'email',
         'password',
+        'status',
+        'last_sign_in'
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'role_ownerships');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
