@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('gallery_creators', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('gallery_id');
             $table->timestamps();
+
+            $table->foreign('gallery_id')->references('id')->on('galleries')->onDelete('cascade');
         });
     }
 
