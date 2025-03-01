@@ -163,6 +163,7 @@ Check if the API is conected correctly.
 
  ```
 ## Update Press Release And Content
+#### `PUT /press-releases/{press-release uuid}`
 Request ( form data / multipart data ):
   ```bash
    {
@@ -181,5 +182,76 @@ Request ( form data / multipart data ):
         .........
   }
 ```
-  
+
+### 4. Gallery Endpoints
+## Store New Gallery
+#### `POST /gallery`
+  Request ( form data / multipart data ):
+  ```bash
+   {
+    "caption": "caption text",
+    "image": image file,
+  }
+  ```
+## Read All Gallery 
+#### `GET /gallery`
+
+ Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Gallery retrieved successfully",
+    "data" : [
+        {
+            "id": "gallery id" ,
+            "gallery_uuid" : "gallery uuid",
+            image_url: "gallery image url",
+            caption: null,
+            created_at: "2025-03-01T04:29:26.000000Z",
+            updated_at: "2025-03-01T04:29:26.000000Z"
+        }
+        ...........
+
+    ]
+  }
+
+ ```
+ ## Read Gallery By UUID 
+ #### `GET /gallery/{ gallery uuid }`
+
+  Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Gallery retrieved successfully",
+    "data" : {
+            "id": "gallery id" ,
+            "gallery_uuid" : "gallery uuid",
+            image_url: "gallery image url",
+            caption: null,
+            created_at: "2025-03-01T04:29:26.000000Z",
+            updated_at: "2025-03-01T04:29:26.000000Z"
+        }
+  }
+```
+## Update Gallery Data 
+#### `PUT /gallery/{gallery uuid}`
+ Request ( form data / multipart data ):
+  ```bash
+   {
+    "caption": "caption text",
+    "image": image file,
+  }
+  ```
+
+## Delete Gallery
+#### `/gallery/{gallery uuid}`
+ Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Gallery deleted successfully",
+  }
+
+ ```
   
