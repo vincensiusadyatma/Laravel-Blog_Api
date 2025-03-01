@@ -18,7 +18,7 @@
 
             <div>
                 <label class="block font-semibold">Deskripsi:</label>
-                <textarea name="deskripsi" rows="3" class="w-full border p-2 rounded" required>{{ old('deskripsi', $carrer->deskripsi) }}</textarea>
+                <textarea name="description" rows="3" class="w-full border p-2 rounded" required>{{ old('deskripsi', $carrer->description) }}</textarea>
             </div>
 
      

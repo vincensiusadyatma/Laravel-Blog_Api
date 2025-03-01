@@ -50,7 +50,7 @@ Route::middleware(['CheckRole:admin'])->prefix('gallery')->group(function () {
 });
 
 
-Route::prefix('carrer')->group(function () {
+Route::middleware(['CheckRole:admin'])->prefix('carrer')->group(function () {
     Route::get('/', [CarrerController::class, 'getAllCarrer'])->name('carrers.all'); 
     Route::get('/{carrer:carrer_uuid}', [CarrerController::class, 'getCarrerByUUID'])->name('carrers.id'); 
     Route::post('/', [CarrerController::class, 'store'])->name('carrers.store'); 

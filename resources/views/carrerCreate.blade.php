@@ -17,8 +17,8 @@
 
             <div>
                 <label class="block font-semibold">Deskripsi:</label>
-                <textarea name="deskripsi" rows="3" class="w-full border p-2 rounded" required>{{ old('deskripsi') }}</textarea>
-                @error('deskripsi')
+                <textarea name="description" rows="3" class="w-full border p-2 rounded" required>{{ old('deskripsi') }}</textarea>
+                @error('description')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>

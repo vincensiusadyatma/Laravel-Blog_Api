@@ -24,7 +24,7 @@ class CarrerController extends Controller{
     public function store(Request $request){
         $request->validate([
               'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-              'deskripsi' => 'required|string',
+              'description' => 'required|string',
               'link' => 'nullable|url',
         ]);
   
@@ -36,14 +36,14 @@ class CarrerController extends Controller{
         $carrer = Carrer::create([
               'carrer_uuid' => Str::uuid(),
               'image_url' => $imagePath,
-              'deskripsi' => $request->deskripsi,
+              'description' => $request->description,
               'link' => $request->link,
         ]);
 
           
         DB::table('carrer_creators')->insert([
             'user_id' => Auth::user()->id,
-            'press_id' => $carrer->id,
+            'carrer_id' => $carrer->id,
         ]);
 
   
@@ -57,7 +57,7 @@ class CarrerController extends Controller{
     public function update(Request $request, Carrer $carrer){
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'deskripsi' => 'required|string',
+            'description' => 'required|string',
             'link' => 'nullable|url',
         ]);
 
@@ -69,7 +69,7 @@ class CarrerController extends Controller{
         }
 
         $carrer->update([
-            'deskripsi' => $request->deskripsi,
+            'description' => $request->description,
             'link' => $request->link,
         ]);
 

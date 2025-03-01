@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('carrer_uuid')->unique(); 
             $table->string('image_url')->nullable(); 
-            $table->text('deskripsi')->nullable(); 
+            $table->text('description')->nullable(); 
             $table->string('link')->nullable(); 
             $table->timestamps();
         });
