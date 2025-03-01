@@ -245,12 +245,92 @@ Request ( form data / multipart data ):
   ```
 
 ## Delete Gallery
-#### `/gallery/{gallery uuid}`
+#### `DELETE /gallery/{gallery uuid}`
  Response:
   ```bash
    {
     "status": "200,
     "message": "Gallery deleted successfully",
+  }
+
+ ```
+
+### 5. Carrer Endpoints
+## Store New Carrer
+#### `POST /carrer`
+
+ Request ( form data / multipart data ):
+  ```bash
+   {
+    "image": image file,
+    "description": "description text",
+    "link" : "url link"
+  }
+  ```
+
+## Read All Carrer 
+#### `GET /carrer`
+ Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Carrer retrieved successfully",
+    "data" : [
+        {
+          "id":  "carrer id",
+          carrer_uuid: "carrer uuid",
+          image_url: "carrer image url,
+          deskripsi: "carrer description",
+          link: "carrer link",
+          created_at: "2025-03-01T07:39:17.000000Z",
+          updated_at: "2025-03-01T07:39:17.000000Z"
+        }
+        ...........
+
+    ]
+  }
+
+ ```
+
+## Read Carrer By UUID 
+#### `GET /carrer/{ carrer uuid }`
+  Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "Carrer retrieved successfully",
+    "data" : {
+          "id":  "carrer id",
+          carrer_uuid: "carrer uuid",
+          image_url: "carrer image url,
+          deskripsi: "carrer description",
+          link: "carrer link",
+          created_at: "2025-03-01T07:39:17.000000Z",
+          updated_at: "2025-03-01T07:39:17.000000Z"
+        }
+      
+  }
+
+ ```
+
+## Update Carrer Data 
+#### `PUT /carrer/{gallery uuid}`
+ Request ( form data / multipart data ):
+   ```bash
+   {
+    "image": image file,
+    "description": "description text",
+    "link" : "url link"
+  }
+  ```
+
+## Delete Carrer Data
+#### `DELETE /carrer/{carrer uuid}`
+ Response:
+  ```bash
+   {
+    "status": "200,
+    "message": "carrer deleted successfully",
   }
 
  ```
